@@ -1,6 +1,6 @@
-const apiProcessor = async (option) => {
+const apiProcessor = async (options) => {
   try {
-    const response = await axios(option);
+    const response = await axios(options);
     return response.data;
   } catch (error) {
     return {
@@ -9,11 +9,11 @@ const apiProcessor = async (option) => {
     };
   }
 };
-export const loginUser = (data) => {
-  const option = {
+export const adminLogin = (data) => {
+  const options = {
     method: "post",
-    url: "admin-user/login",
+    url: "admin/login",
     data,
   };
-  return apiProcessor(option);
+  apiProcessor(options);
 };

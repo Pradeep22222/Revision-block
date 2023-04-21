@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const VerificationPage = () => {
   const [response, setResponse] = useState({});
-  const [pending, setpending] = useState(true);
+  const [pending, setPending] = useState(true);
   const [queryParams] = useSearchParams();
   useEffect(() => {
     const obj = {
@@ -10,9 +10,9 @@ const VerificationPage = () => {
       email: queryParams.get("e"),
     };
     (async () => {
-        const result = await emailVarification(obj);
-        result.status === "success" && setResponse(result)
-        setIspending
+      const result = await emailVarification(obj);
+      result.status === "success" && setResponse(result);
+      setPending(false);
     })();
   }, []);
   return <div>VerificationPage</div>;
