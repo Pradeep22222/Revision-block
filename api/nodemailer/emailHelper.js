@@ -1,23 +1,26 @@
-const emailHelper = async (emailbody) => {
-  let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass, // generated ethereal password
-    },
-  });
-  let info = await transporter.sendMail(emailbody);
+const emailHelper = async (body) => {
+  try {
+    let transporter = nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      secure: false,
+      auth: {
+        user: testAccount.user,
+        pass: testAccount.pass,
+      },
+    });
+    let info = await transporter.sendMail(body);
+  } catch (error) {
+    console.log(error);
+  }
 };
-
-export const emailVerificationEmail = (emaildata) => {
-  const emailBody = {
+export const emailVerificationEmail = (emailData) => {
+  const body = {
     from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    to: "bar@example.com, baz@example.com", // list of receivers
+    to: `${emailData.email}`, // list of receivers
     subject: "Hello ✔", // Subject line
     text: "Hello world?", // plain text body
-    html: `<b>Hello ${emaildata.firstName}</b>`, // html body
+    html: "<b>Hello world?</b>", // html body}
   };
-  return emailProcessor(emailBody);
+  return emailHelper(body);
 };
