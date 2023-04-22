@@ -1,9 +1,9 @@
-import { loginUser } from "../Helpers/axiosHelper";
-import setAdminUser from "./Slice";
+import { adminLogin } from "../Helpers/axiosHelper";
+import { setAdminUser } from "./Slice";
 export const userAction = (data) => async (dispatch) => {
-  const promiseResult = loginUser(data);
-  toast.promise(promiseResult, { pending: "Please wait" });
-  const { status, message, user } = await promiseResult;
-  toast[status](message, user);
+  const resultPromise = adminLogin(data);
+  toast.promise(resultPromise, { pending: "Please wait..." });
+  const { status, message, user } = await resultPromise;
+  toast[status](message);
   status === "success" && setAdminUser(user);
 };

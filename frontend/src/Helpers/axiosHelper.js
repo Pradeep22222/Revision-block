@@ -15,5 +15,5 @@ export const adminLogin = (data) => {
     url: "admin/login",
     data,
   };
-  apiProcessor(options);
+  return apiProcessor(options);
 };

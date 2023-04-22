@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { userAction } from "../redux/Action";
-import { useDispatch, useSelector } from "react-redux";
-
 const LoginPage = () => {
-  const form = {};
+  const [form, setForm] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.admin);
   useEffect(() => {
-    user?._id && navigate("/dashboard");
-  }, [user, navigate]);
-
+    user._id && navigate("/dashboard");
+  }, [user]);
   const handleOnSubmit = (e) => {
     e.preventDefault();
     dispatch(userAction(form));
