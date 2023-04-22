@@ -1,9 +1,22 @@
 import mongoose from "mongoose";
-const userSchema = new mongoose.Schema(
+const adminUserSchema = new mongoose.Schema(
   {
-    status: {},
-    firstName: {},
+    status: {
+      type: String,
+      default: "inactive",
+    },
+    firstName: {
+      type: String,
+      requiered: true,
+      maxLength: [20, "First Name can't be longer than 20 character"],
+    },
+    lastName: {
+      type: String,
+      requiered: true,
+      maxLength: [20, "Last Name can't be longer than 20 character"],
+    },
   },
-  { timestamps: true }
+  { timeStamps: true }
 );
-export default mongoose.model("adminUser", userSchema);
+
+export default mongoose.model("admin-user", adminUserSchema);
