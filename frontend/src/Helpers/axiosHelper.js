@@ -17,3 +17,11 @@ export const adminLogin = (data) => {
   };
   return apiProcessor(options);
 };
+export const verifyEmail = (data) => {
+  const options = {
+    method: "post",
+    url: "admin/verify-email",
+    data,
+  };
+  return apiProcessor(options);
+};
